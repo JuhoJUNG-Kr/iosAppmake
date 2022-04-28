@@ -32,7 +32,8 @@ class ViewController: UIViewController {
     
     @IBAction func rpsButtonTapped(_ sender: UIButton) {
         //버튼의 문자(text= 가위, 바위 보)를 가져옴
-        let title = sender.currentTitle!
+        guard let title = sender.currentTitle else {return}
+        //let title = sender.currentTitle!
         //가위 바위 보를 선택하여 그 정보를 저장
         switch title {
         case "가위":
