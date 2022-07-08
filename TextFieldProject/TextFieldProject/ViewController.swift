@@ -18,18 +18,24 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func setUp() {
-        view.backgroundColor = UIColor.gray
-        
         textFiled.keyboardType = UIKeyboardType.emailAddress
         textFiled.placeholder = "put your email"
         textFiled.borderStyle = .roundedRect
         textFiled.clearButtonMode = .always
         textFiled.returnKeyType = .next
+        textFiled.becomeFirstResponder()
+    }
+    
+    //화면 바깥을 터치했을 때 키보드 내리기 (화면의 탭을 감지하는 메서드)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+        //textFiled.resignFirstResponder() 같은 역할임
     }
     
     //텍스트 필드의 입력을 시작할 때 호출 (시작할지 말지의 여부 허락하는 것)
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         print(#function)
+        view.backgroundColor = UIColor.gray
         return true
     }
     
@@ -79,7 +85,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         print("유저가 텍스트 필드 입력을 끝냈습니다.")
     }
     @IBAction func doneButtonPressed(_ sender: UIButton) {
-        
+        textFiled.resignFirstResponder()
         
     }
     
