@@ -6,8 +6,9 @@
 //
 
 import UIKit
-
-class ViewController: UIViewController {
+//더이상 상속을 막아서 메서드가 다이렉트 디스패치로 일어나게 만듬
+//실무에서는 final과 private를 붙인다
+final class ViewController: UIViewController {
     
     //클로저 실행문으로 만들기, 코드의 혼동 및 정리가 깔끔해서 헷갈일 일이 잘 없음.
     //단 오토레이아웃은 다른 함수에 따로 만들어야 함.
@@ -17,6 +18,8 @@ class ViewController: UIViewController {
         view.backgroundColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
         view.layer.cornerRadius = 5
         view.clipsToBounds = true
+        //addSubview 키워드를 쓴다면, 키워드 안의 변수들이 먼저! 올라가고 후에 해당 뷰가 올라가야 하기 때문에(동시에 되면 안됨!)
+        //lazy를 붙여준다
         view.addSubview(emailTextField)
         view.addSubview(emailInfoLabel)
         return view
@@ -42,7 +45,7 @@ class ViewController: UIViewController {
         tf.autocorrectionType = .no
         tf.spellCheckingType = .no
         tf.keyboardType = .emailAddress
-        //tf.addTarget(self, action: #selector(textFieldEditingChanged(_:)), for: .editingChanged)
+        tf.addTarget(self, action: #selector(textFieldEditingChanged(_:)), for: .editingChanged)
         return tf
     }()
     
@@ -80,7 +83,7 @@ class ViewController: UIViewController {
         tf.spellCheckingType = .no
         tf.isSecureTextEntry = true
         tf.clearsOnBeginEditing = false
-        //tf.addTarget(self, action: #selector(textFieldEditingChanged(_:)), for: .editingChanged)
+        tf.addTarget(self, action: #selector(textFieldEditingChanged(_:)), for: .editingChanged)
         return tf
     }()
     
@@ -105,7 +108,7 @@ class ViewController: UIViewController {
         button.setTitle("Login", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.isEnabled = false
-        //button.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -131,23 +134,28 @@ class ViewController: UIViewController {
     
     private let textViewHeight: CGFloat = 48
     
+    // 오토레이아웃 향후 변경을 위한 변수(애니메이션)
+    lazy var emailInfoLabelCenterYConstraint = emailInfoLabel.centerYAnchor.constraint(equalTo: emailTextFieldView.centerYAnchor)
+    lazy var passwordInfoLabelCenterYConstraint = passwordInfoLabel.centerYAnchor.constraint(equalTo: passwordTextFieldView.centerYAnchor)
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
         setupAutoLayout()
         
     }
     
-    // 오토레이아웃
+    // MARK: - 오토레이아웃
     private func setupAutoLayout() {
         [stackView, passwordResetButton].forEach { view.addSubview($0) }
         view.backgroundColor = #colorLiteral(red: 0.07450980392, green: 0.07450980392, blue: 0.07450980392, alpha: 1)
         emailInfoLabel.translatesAutoresizingMaskIntoConstraints = false
         emailInfoLabel.leadingAnchor.constraint(equalTo: emailTextFieldView.leadingAnchor, constant: 8).isActive = true
         emailInfoLabel.trailingAnchor.constraint(equalTo: emailTextFieldView.trailingAnchor, constant: 8).isActive = true
-        emailInfoLabel.centerYAnchor.constraint(equalTo: emailTextFieldView.centerYAnchor).isActive = true
-        //emailInfoLabelCenterYConstraint.isActive = true
+        //emailInfoLabel.centerYAnchor.constraint(equalTo: emailTextFieldView.centerYAnchor).isActive = true
+        emailInfoLabelCenterYConstraint.isActive = true
         
         emailTextField.translatesAutoresizingMaskIntoConstraints = false
         emailTextField.topAnchor.constraint(equalTo: emailTextFieldView.topAnchor, constant: 15).isActive = true
@@ -158,8 +166,8 @@ class ViewController: UIViewController {
         passwordInfoLabel.translatesAutoresizingMaskIntoConstraints = false
         passwordInfoLabel.leadingAnchor.constraint(equalTo: passwordTextFieldView.leadingAnchor, constant: 8).isActive = true
         passwordInfoLabel.trailingAnchor.constraint(equalTo: passwordTextFieldView.trailingAnchor, constant: 8).isActive = true
-        passwordInfoLabel.centerYAnchor.constraint(equalTo: passwordTextFieldView.centerYAnchor).isActive = true
-        //passwordInfoLabelCenterYConstraint.isActive = true
+        //passwordInfoLabel.centerYAnchor.constraint(equalTo: passwordTextFieldView.centerYAnchor).isActive = true
+        passwordInfoLabelCenterYConstraint.isActive = true
         
         
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -190,6 +198,10 @@ class ViewController: UIViewController {
         
     }
     
+    @objc func loginButtonTapped() {
+        print("Login reusir")
+    }
+    
     //셀렉터는 항상 objc키워드가 필요함. 근데 설정 안해도 컴파일러가 알아서 바꿔줌
     @objc func passwordSecureModeSetting() {
         passwordTextField.isSecureTextEntry.toggle()//토글 메서드는 누를 때마다 참과 거짓이 바뀜
@@ -213,13 +225,87 @@ class ViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    //화면을 터치하면 키보드 내려감
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
     
     
     
     
     
     
+}
+
+// MARK: - 뷰컨 확장
+extension ViewController: UITextFieldDelegate {
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == emailTextField {
+            emailTextFieldView.backgroundColor = .darkGray
+            emailInfoLabel.font = UIFont.systemFont(ofSize: 11)
+            //오토레이아웃 업뎃
+            emailInfoLabelCenterYConstraint.constant = -13
+        }
+        
+        if textField == passwordTextField {
+            passwordTextFieldView.backgroundColor = .darkGray
+            passwordInfoLabel.font = UIFont.systemFont(ofSize: 11)
+            //오토레이아웃 업뎃
+            passwordInfoLabelCenterYConstraint.constant = -13
+        }
+        
+        UIView.animate(withDuration: 0.3) {
+            self.stackView.layoutIfNeeded()
+        }
+    }
     
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        if textField == emailTextField {
+            emailTextFieldView.backgroundColor = #colorLiteral(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
+            // 빈칸이면 원래로 되돌리기
+            if emailTextField.text == "" {
+                emailInfoLabel.font = UIFont.systemFont(ofSize: 18)
+                emailInfoLabelCenterYConstraint.constant = 0
+            }
+        }
+        if textField == passwordTextField {
+            passwordTextFieldView.backgroundColor = #colorLiteral(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
+            // 빈칸이면 원래로 되돌리기
+            if passwordTextField.text == "" {
+                passwordInfoLabel.font = UIFont.systemFont(ofSize: 18)
+                passwordInfoLabelCenterYConstraint.constant = 0
+            }
+            
+            UIView.animate(withDuration: 0.3) {
+                self.stackView.layoutIfNeeded()
+            }
+        }
+    }
     
+    @objc func textFieldEditingChanged(_ textField: UITextField) {
+        if textField.text?.count == 1 {
+            if textField.text?.first == " " {
+                textField.text = ""
+                return
+            }
+        }
+        guard
+            let email = emailTextField.text, !email.isEmpty,
+            let password = passwordTextField.text, !password.isEmpty
+        else {
+            loginButton.backgroundColor = .clear
+            loginButton.isEnabled = false
+            return
+        }
+        loginButton.backgroundColor = .red
+        loginButton.isEnabled = true
+    }
+    
+    // 엔터 누르면 일단 키보드 내림
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }
