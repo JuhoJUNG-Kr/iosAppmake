@@ -84,6 +84,7 @@
                                 </state>
                                 <connections>
                                     <action selector="calculateButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bjy-Kn-mai"/>
+                                    <segue destination="rN5-Vk-IUr" kind="presentation" modalPresentationStyle="fullScreen" id="to7-s4-nMx"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -109,10 +110,10 @@
             </objects>
             <point key="canvasLocation" x="132" y="115"/>
         </scene>
-        <!--View Controller-->
+        <!--Second View Controller-->
         <scene sceneID="Giv-SJ-sDX">
             <objects>
-                <viewController id="rN5-Vk-IUr" sceneMemberID="viewController">
+                <viewController id="rN5-Vk-IUr" customClass="SecondViewController" customModule="bmiProj" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="klY-rP-6ws">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -128,6 +129,9 @@
                                 <state key="normal" title="Button">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="backButtonTapped:" destination="rN5-Vk-IUr" eventType="touchUpInside" id="Wzz-81-4eT"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="NHR-NB-eI9">
                                 <rect key="frame" x="107" y="174" width="200" height="128"/>
@@ -169,10 +173,15 @@
                             <constraint firstItem="NHR-NB-eI9" firstAttribute="centerX" secondItem="klY-rP-6ws" secondAttribute="centerX" id="lC0-Yq-JgJ"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="adviceLabel" destination="ZVZ-5O-Ijs" id="Ajf-4q-GV9"/>
+                        <outlet property="backButton" destination="NUe-2Y-x4H" id="gEE-P0-NuK"/>
+                        <outlet property="bmiNumberLabel" destination="ivT-d3-dfz" id="JYP-AV-rHt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9T1-cK-MEp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="953.62318840579712" y="121.875"/>
+            <point key="canvasLocation" x="1297" y="115"/>
         </scene>
     </scenes>
     <resources>

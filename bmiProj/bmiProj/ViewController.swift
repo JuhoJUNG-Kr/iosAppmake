@@ -30,7 +30,7 @@ class ViewController: UIViewController {
         weightTextField.keyboardType = UIKeyboardType.numberPad
         heightTextField.placeholder = "cm"
         weightTextField.placeholder = "kg"
-        calculateButton.layer.cornerRadius = 8
+        calculateButton.layer.cornerRadius = 5
         calculateButton.layer.masksToBounds = true
         calculateButton.setTitle("BMI 계산하기", for: .normal)
     }

@@ -13,6 +13,7 @@
 		5B38F62D2885B5F800EC0383 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B38F62B2885B5F800EC0383 /* Main.storyboard */; };
 		5B38F62F2885B5F900EC0383 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B38F62E2885B5F900EC0383 /* Assets.xcassets */; };
 		5B38F6322885B5F900EC0383 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B38F6302885B5F900EC0383 /* LaunchScreen.storyboard */; };
+		5B38F63A2885C1E900EC0383 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B38F6392885C1E900EC0383 /* SecondViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		5B38F62E2885B5F900EC0383 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5B38F6312885B5F900EC0383 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5B38F6332885B5F900EC0383 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5B38F6392885C1E900EC0383 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				5B38F6252885B5F800EC0383 /* AppDelegate.swift */,
 				5B38F6272885B5F800EC0383 /* SceneDelegate.swift */,
 				5B38F6292885B5F800EC0383 /* ViewController.swift */,
+				5B38F6392885C1E900EC0383 /* SecondViewController.swift */,
 				5B38F62B2885B5F800EC0383 /* Main.storyboard */,
 				5B38F62E2885B5F900EC0383 /* Assets.xcassets */,
 				5B38F6302885B5F900EC0383 /* LaunchScreen.storyboard */,
@@ -138,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B38F63A2885C1E900EC0383 /* SecondViewController.swift in Sources */,
 				5B38F62A2885B5F800EC0383 /* ViewController.swift in Sources */,
 				5B38F6262885B5F800EC0383 /* AppDelegate.swift in Sources */,
 				5B38F6282885B5F800EC0383 /* SceneDelegate.swift in Sources */,
