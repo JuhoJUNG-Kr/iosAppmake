@@ -82,6 +82,9 @@
                                 <state key="normal" title="BMI 계산하기">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="calculateButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bjy-Kn-mai"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -95,6 +98,12 @@
                             <constraint firstItem="ZKS-La-BHy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="tah-JZ-4Gt"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="calculateButton" destination="ZKS-La-BHy" id="5na-mG-goG"/>
+                        <outlet property="heightTextField" destination="7Po-mJ-r4u" id="2sm-XK-6Sa"/>
+                        <outlet property="mainLabel" destination="dSh-P5-Rqd" id="F77-Ff-OZa"/>
+                        <outlet property="weightTextField" destination="sss-W9-cZz" id="wQF-Wt-jpw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
