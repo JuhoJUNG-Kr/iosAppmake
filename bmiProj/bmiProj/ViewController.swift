@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var heightTextField: UITextField!
     @IBOutlet weak var weightTextField: UITextField!
     @IBOutlet weak var calculateButton: UIButton!
+    var bmi: Double?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +27,6 @@ class ViewController: UIViewController {
         mainLabel.text = "키와 몸무게를 입력해주세요"
         heightTextField.clearButtonMode = .always
         weightTextField.clearButtonMode = .always
-        heightTextField.keyboardType = UIKeyboardType.numberPad
-        weightTextField.keyboardType = UIKeyboardType.numberPad
         heightTextField.placeholder = "cm"
         weightTextField.placeholder = "kg"
         calculateButton.layer.cornerRadius = 5
@@ -36,8 +35,39 @@ class ViewController: UIViewController {
     }
 
     @IBAction func calculateButtonTapped(_ sender: UIButton) {
+        bmi = calculateBmi(height: heightTextField.text!, weight: weightTextField.text!)
     }
     
+    //Bmi 계산 메서드
+    func calculateBmi(height: String, weight: String) -> Double {
+        guard let h = Double(height), let w = Double(weight) else { return 0.0 }
+        var bmi = w / (h * h) * 10000
+        //반올림 해주는 함수
+        bmi = round(bmi * 10) / 10
+        print("bmi 결과값 \(bmi)")
+        return bmi
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if heightTextField.text == "" || weightTextField.text == "" {
+            mainLabel.text = "키와 몸무게를 입력해야만 합니다"
+            mainLabel.textColor = UIColor.red
+            return false
+        }
+        mainLabel.text = "키와 몸무게를 입력해주세요"
+        mainLabel.textColor = UIColor.black
+        return true
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toSecondVC" {
+            let secondVC = segue.destination as! SecondViewController
+            secondVC.bmi = self.bmi
+        }
+        heightTextField.text = ""
+        weightTextField.text = ""
+        
+    }
 }
 
 extension ViewController: UITextFieldDelegate {
@@ -47,16 +77,23 @@ extension ViewController: UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if Int(string) != nil || string == "" {
+            return true //글자 입력을 허용(숫자를 입력할 경우)
+        }
+        return false // 글자 입력을 허용하지 않음.
 
-        //글자수 10 글자 제한 만들기
-        let maxLength = 3
-        let currentString = (textField.text ?? "") as NSString
-        let newString = currentString.replacingCharacters(in: range, with: string)
-
-        return newString.count <= maxLength
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        return true
+        //두개의 텍스트 필드를 모두 종료(키보드 내려가기)
+        if heightTextField.text != "", weightTextField.text != "" {
+            weightTextField.resignFirstResponder()
+            return true
+            //첫번째 텍스트 필드 입력을 완료했을 경우, 두번째 텍스트 필드로 넘어가기
+        } else if heightTextField.text != "" {
+            weightTextField.becomeFirstResponder()
+            return true
+        }
+        return false
     }
 }
