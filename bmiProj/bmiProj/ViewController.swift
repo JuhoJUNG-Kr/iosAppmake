@@ -48,6 +48,43 @@ class ViewController: UIViewController {
         return bmi
     }
     
+    func getBackGrondColor() -> UIColor {
+        guard let bmi = bmi else { return UIColor.black }
+        switch bmi {
+        case ..<18.6:
+            return UIColor(displayP3Red: 22/255, green: 231/255, blue: 207/255, alpha: 1)
+        case 18.6..<23.0:
+            return UIColor(displayP3Red: 212/255, green: 251/255, blue: 121/255, alpha: 1)
+        case 23.0..<25.0:
+            return UIColor(displayP3Red: 218/255, green: 127/255, blue: 163/255, alpha: 1)
+        case 25.0..<30.0:
+            return UIColor(displayP3Red: 255/255, green: 150/255, blue: 141/255, alpha: 1)
+        case 30.0...:
+            return UIColor(displayP3Red: 255/255, green: 100/255, blue: 78/255, alpha: 1)
+        default:
+            return UIColor.black
+        }
+    }
+    
+    func getBmiAdvice() -> String {
+        guard let bmi = bmi else { return "" }
+        switch bmi {
+        case ..<18.6:
+            return "저체중"
+        case 18.6..<23.0:
+            return "표준"
+        case 23.0..<25.0:
+            return "과체중"
+        case 25.0..<30.0:
+            return "중도비만"
+        case 30.0...:
+            return "고도비만"
+        default:
+            return ""
+        }
+
+    }
+    
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if heightTextField.text == "" || weightTextField.text == "" {
             mainLabel.text = "키와 몸무게를 입력해야만 합니다"
@@ -62,7 +99,9 @@ class ViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toSecondVC" {
             let secondVC = segue.destination as! SecondViewController
-            secondVC.bmi = self.bmi
+            secondVC.bmiNumber = self.bmi
+            secondVC.bmiColor = self.getBackGrondColor()
+            secondVC.adviceString = self.getBmiAdvice()
         }
         heightTextField.text = ""
         weightTextField.text = ""
