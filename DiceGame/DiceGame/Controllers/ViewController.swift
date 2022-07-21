@@ -11,16 +11,18 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var leftImgView: UIImageView!
     @IBOutlet weak var rigthImgView: UIImageView!
-    var diceArray: [UIImage] = [#imageLiteral(resourceName: "black1"), #imageLiteral(resourceName: "black2"), #imageLiteral(resourceName: "black3"), #imageLiteral(resourceName: "black4"), #imageLiteral(resourceName: "black5"), #imageLiteral(resourceName: "black6")]
+    //항상 인스턴스 먼저 생성
+    var diceManager = DiceManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        leftImgView.image = diceManager.getFirstDice()
+        rigthImgView.image = diceManager.getFirstDice()
     }
 
     @IBAction func rollButtonPressed(_ sender: UIButton) {
-        leftImgView.image = diceArray.randomElement()
-        rigthImgView.image = diceArray.randomElement()
+        leftImgView.image = diceManager.getRandomDice()
+        rigthImgView.image = diceManager.getRandomDice()
         
     }
     
