@@ -7,11 +7,11 @@
 
 import UIKit
 
-struct BMICalculatorManager {
+class BMICalculatorManager {
     
     var bmi: Double?
     //Bmi 계산 메서드
-    mutating func calculateBmi(height: String, weight: String) {
+    func calculateBmi(height: String, weight: String) {
         guard let h = Double(height), let w = Double(weight) else {
             bmi = 0.0
             return
