@@ -38,7 +38,7 @@ class ViewController: UIViewController {
 
     @IBAction func calculateButtonTapped(_ sender: UIButton) {
         
-        bmiManager.calculateBmi(height: heightTextField.text!, weight: weightTextField.text!)
+        bmiManager.getBMI(height: heightTextField.text!, weight: weightTextField.text!)
 
     }
     
@@ -58,9 +58,7 @@ class ViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toSecondVC" {
             let secondVC = segue.destination as! SecondViewController
-            secondVC.bmiNumber = bmiManager.getBmiResult()
-            secondVC.bmiColor = bmiManager.getBackGrondColor()
-            secondVC.adviceString = bmiManager.getBmiAdvice()
+            secondVC.bmi = bmiManager.getBMI(height: heightTextField.text!, weight: weightTextField.text!)
         }
         heightTextField.text = ""
         weightTextField.text = ""
