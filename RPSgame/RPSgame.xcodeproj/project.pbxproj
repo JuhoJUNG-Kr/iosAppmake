@@ -14,6 +14,7 @@
 		5B1F4FEC281AC3860013FB35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B1F4FEB281AC3860013FB35 /* Assets.xcassets */; };
 		5B1F4FEF281AC3860013FB35 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B1F4FED281AC3860013FB35 /* LaunchScreen.storyboard */; };
 		5B1F4FF7281ACD960013FB35 /* Rps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1F4FF6281ACD960013FB35 /* Rps.swift */; };
+		5B2EE91E2889EC8E00D02EF7 /* RpsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2EE91D2889EC8E00D02EF7 /* RpsManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		5B1F4FEE281AC3860013FB35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5B1F4FF0281AC3860013FB35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B1F4FF6281ACD960013FB35 /* Rps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rps.swift; sourceTree = "<group>"; };
+		5B2EE91D2889EC8E00D02EF7 /* RpsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RpsManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,14 +62,39 @@
 			children = (
 				5B1F4FE2281AC3840013FB35 /* AppDelegate.swift */,
 				5B1F4FE4281AC3840013FB35 /* SceneDelegate.swift */,
-				5B1F4FF6281ACD960013FB35 /* Rps.swift */,
-				5B1F4FE6281AC3840013FB35 /* ViewController.swift */,
-				5B1F4FE8281AC3840013FB35 /* Main.storyboard */,
+				5B2EE91A2889EB7400D02EF7 /* Model */,
+				5B2EE91B2889EB7E00D02EF7 /* View */,
+				5B2EE91C2889EB8800D02EF7 /* Controller */,
 				5B1F4FEB281AC3860013FB35 /* Assets.xcassets */,
 				5B1F4FED281AC3860013FB35 /* LaunchScreen.storyboard */,
 				5B1F4FF0281AC3860013FB35 /* Info.plist */,
 			);
 			path = RPSgame;
+			sourceTree = "<group>";
+		};
+		5B2EE91A2889EB7400D02EF7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5B1F4FF6281ACD960013FB35 /* Rps.swift */,
+				5B2EE91D2889EC8E00D02EF7 /* RpsManager.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5B2EE91B2889EB7E00D02EF7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5B1F4FE8281AC3840013FB35 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5B2EE91C2889EB8800D02EF7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5B1F4FE6281AC3840013FB35 /* ViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,6 +172,7 @@
 				5B1F4FF7281ACD960013FB35 /* Rps.swift in Sources */,
 				5B1F4FE3281AC3840013FB35 /* AppDelegate.swift in Sources */,
 				5B1F4FE5281AC3840013FB35 /* SceneDelegate.swift in Sources */,
+				5B2EE91E2889EC8E00D02EF7 /* RpsManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
