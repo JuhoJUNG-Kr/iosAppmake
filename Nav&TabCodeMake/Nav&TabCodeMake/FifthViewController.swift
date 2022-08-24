@@ -1,18 +1,17 @@
 //
-//  FirstViewController.swift
-//  Nav&Tapcodemake
+//  FifthViewController.swift
+//  Nav&TabCodeMake
 //
 //  Created by 정주호 on 22/08/2022.
 //
 
 import UIKit
 
-class FirstViewController: UIViewController {
+class FifthViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        view.backgroundColor = .red
     }
     
 
