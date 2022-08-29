@@ -25,4 +25,8 @@ class DataManager {
         Movie(movieImage: UIImage(named: "guardians.png"), movieName: "가디언즈 오브 갤럭시", movieDescription: "빌런 타노스에 맞서서 세상을 지키려는 가오겔 멤버들")
         ]
     }
+    
+    func getMovieData() -> [Movie] {
+        return movieDataArray
+    }
 }
