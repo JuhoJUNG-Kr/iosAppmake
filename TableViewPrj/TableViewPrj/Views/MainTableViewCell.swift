@@ -6,15 +6,15 @@
 //
 
 import UIKit
+// MARK: - Main Table view
 
 class MainTableViewCell: UITableViewCell {
 
     @IBOutlet weak var mainImageView: UIImageView!
     
-    @IBOutlet weak var movieNameLable: UILabel!
+    @IBOutlet weak var movieNameLabel: UILabel!
     
-    @IBOutlet weak var discriptionLable: UILabel!
-    
+    @IBOutlet weak var descriptionLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
