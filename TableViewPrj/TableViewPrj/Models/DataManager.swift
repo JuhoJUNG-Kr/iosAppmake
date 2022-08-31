@@ -9,7 +9,7 @@ import UIKit
 
 //뷰컨트롤러가 데이터를 요청했을 때, 영화의 배열을 넘겨주는 역할을 하는 곳
 class DataManager {
-    var movieDataArray: [Movie] = []
+    private var movieDataArray: [Movie] = []
     
     //배열을 만드는 함수(서버에서 받아오는 것 처럼 만들어봄)
     func makeMovieData() {

@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     //var moviesArray: [Movie] = []
     
     //mvc 패턴이므로 dataManager 생성자를 생성하기(뷰컨에서 사용하기 위해)
-    var movieDataManager = DataManager()
+    private var movieDataManager = DataManager()
     
     
     @IBOutlet weak var tableView: UITableView!
@@ -22,7 +22,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //테이블뷰는 델리게이트가 아닌 데이터 소스에 할당할 것.
-        //델리게이트 패턴과 같지만 이름만 데이터 소스임. 각각 따로 해줘야함
+        //데이터 소스는 테이블 뷰가 어떤 형태를 가질 것인지에 대한 설정임
+        //델리게이트는 테이블 뷰를 클릭하거나 스크롤 하거나 닫거나 할 때를 위한 세세한 설정임
+        //둘다 따로 설정해야함
         tableView.dataSource = self
         //델리게이트 패턴을 위해 대리자 설정
         tableView.delegate = self
