@@ -14,7 +14,6 @@ class ViewController: UIViewController {
     //mvc 패턴이므로 dataManager 생성자를 생성하기(뷰컨에서 사용하기 위해)
     private var movieDataManager = DataManager()
     
-    
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - viewDidLoad
@@ -41,8 +40,19 @@ class ViewController: UIViewController {
          getMovieData() 는 리턴형을 [Movie] 배열로 만들어 직접 사용할 수 있게 해주는 함수
          */
         //moviesArray = movieDataManager.getMovieData()
+        
+        //네비게이션 바 타이틀은 이미 애플이 만들어놓았기 때문에 title 만 써줘도 됨
+        title = "Movie"
+    }
+    
+    @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
+        movieDataManager.updateMovieData()
+        //데이터가 추가되었거나 변경되었으니 테이블 뷰를 새로 불러오세요~ 하는 메서드⭐️ 필수
+        tableView.reloadData()
     }
 }
+
+
 
 // MARK: - Extension for Viewcon
 //테이블 뷰 데이터 소스와 같은 뷰컨 안의 프로토콜들은 항상 익스텐션으로 구현
