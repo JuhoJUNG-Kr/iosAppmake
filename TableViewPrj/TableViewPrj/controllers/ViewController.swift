@@ -22,10 +22,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //테이블뷰는 델리게이트가 아닌 데이터 소스에 할당할 것.
-        //델리게이트 패턴과 같지만 이름만 데이터 소스임.
+        //델리게이트 패턴과 같지만 이름만 데이터 소스임. 각각 따로 해줘야함
         tableView.dataSource = self
+        //델리게이트 패턴을 위해 대리자 설정
+        tableView.delegate = self
         //테이블 뷰에서 하나하나의 셀의 높이
         tableView.rowHeight = 120
+
         //mvc 패턴을 위해 만든 생성자 에서 makeMovieData함수를 호출하여 서버에서 데이터 받아오기
         movieDataManager.makeMovieData()
         /*⭐️그 후 생성자에 데이터가 받아졌으면,
@@ -70,5 +73,33 @@ extension ViewController: UITableViewDataSource {
         //셀 클릭했을 때, 색깔이 바뀌지 않음
         //cell.selectionStyle = .none
         return cell
+    }
+}
+
+
+extension ViewController: UITableViewDelegate {
+    
+    //테이블 뷰 안에서 셀이 선택되었을때
+    //몇번째 셀이 선택되었는지는 설정할 필요 없음 indexPath 안에 자동으로 전달 받을 수있음.
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        //세그웨이를 통해 다음 화면으로 넘어가기. (스토리보드로 만들때만 가능)
+        //센더에 인덱스패스 파라미터를 넣어 내가 선택한 행의 정보를 받아옴
+        performSegue(withIdentifier: "toDetail", sender: indexPath)
+    }
+    
+    //스토리보드로 작성시 데이터를 전달할 때, prepare 메서드를 사용한다.
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //세그웨이의 identifier의 이름이 내가 지정한 이름인 경우,
+        if segue.identifier == "toDetail" {
+            //타입캐스팅을 사용하여 타입을 맞춰준 뒤(내가 나타내고 싶은 화면의 클래스 이름) 사용
+            let detailVC = segue.destination as! DetailViewController
+            //먼저 전체 영화 데이터를 받아온다
+            let array = movieDataManager.getMovieData()
+            //그 후에, 내가 선택한 영화의 정보를 sender에서 꺼내기 위해 IndexPath로 타입캐스팅
+            let indexPath = sender as! IndexPath
+            //해준뒤, 내가 선택한 영화의 정보를 배열 안에서 꺼내오기
+            detailVC.movieData = array[indexPath.row]
+        }
     }
 }
