@@ -6,7 +6,7 @@
 //
 
 import UIKit
-// MARK: - Main Table view
+// MARK: - Main Table view cell
 
 class MainTableViewCell: UITableViewCell {
 
