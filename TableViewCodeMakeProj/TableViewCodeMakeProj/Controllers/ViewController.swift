@@ -25,19 +25,20 @@ final class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //처음에는 반드시 비즈니스 모델(뷰컨에 만든 멤버리스트 저장속성 인스턴스)에 데이터를 받아올것!
-        setupData()
-        
-        setupTableView()
-        setupTableViewConstraints()
+        view.backgroundColor = .white
         setupNaviBar()
+        setupTableView()
+        setupData()
+        setupTableViewConstraints()
     }
     
-    //어떤 화면으로 넘어갔다가 다시 다른 화면이 재호출 될 때 사용하는 메서드
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        //디테일 화면에서 다시 테이블 뷰로 넘어올 때, 테이블 뷰 새로고침 해주세요~
-        tableView.reloadData()
-    }
+//    //어떤 화면으로 넘어갔다가 다시 다른 화면이 재호출 될 때 사용하는 메서드
+      //커스텀 델리게이트 패턴으로 사용할 때는 딱히 필요가 없다.
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        //디테일 화면에서 다시 테이블 뷰로 넘어올 때, 테이블 뷰 새로고침 해주세요~
+//        tableView.reloadData()
+//    }
     
     // MARK: - Navigation Bar Set Up
 
@@ -118,9 +119,25 @@ extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //디테일 화면으로 넘어가는 코드
         let detailVC = DetailViewController()
+        //뷰컨에서 디테일 뷰컨으로 넘어가는 시기이기 때문에 이곳에서 델리게이트를 채택한다
+        detailVC.delegate = self
+        
         let array = memberListManager.getMembersList()
         
         detailVC.member = array[indexPath.row]
         navigationController?.pushViewController(detailVC, animated: true)
+    }
+}
+
+extension ViewController: MemberDelegate {
+    
+    func addNewMember(_ member: Member) {
+        memberListManager.makeNewMember(member)
+        tableView.reloadData()
+    }
+    
+    func update(index: Int, _ member: Member) {
+        memberListManager.updateMemberInfo(index: index, member)
+        tableView.reloadData()
     }
 }

@@ -6,6 +6,16 @@
 //
 
 import UIKit
+//디테일 뷰 컨트롤러에서 일어나는 일(정보 업데이트 or 삭제)를 메인 뷰 컨으로 전달하기 위해 프로토콜을 채택
+//AnyObject 타입으로 설정해야 클래스에서만 사용할 수 있는 프로토콜이 된다
+protocol MemberDelegate: AnyObject {
+    //멤버 추가하기
+    func addNewMember(_ member: Member)
+    //기존 멤버의 정보 업데이트
+    //몇번째 멤버의 업테이트인지 알아야 함
+    func update(index: Int, _ member: Member)
+}
+
 //클래스는 무겁기 때문에 간단한 데이터 모델 같은 경우는 구조체로 만들자
 struct Member {
     //타입 저장 속성. 모든 인스턴스가 공통으로 사용할 수 있는 속성

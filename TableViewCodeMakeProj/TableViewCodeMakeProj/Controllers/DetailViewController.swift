@@ -12,6 +12,11 @@ import PhotosUI
 final class DetailViewController: UIViewController {
     //디테일 뷰 불러오기
     private let detailView = DetailView()
+    //프로토콜을 채택한 메인 뷰컨의 대리자를 디테일 뷰컨에 생성!
+    /*프로토콜의 타입이 anyobject이기 때문에 클래스만 사용할 수 있는 프로토콜이며
+     델리게이트 대리자를 weak으로 선언한 이유는, 디테일 뷰컨과 메인 뷰컨이 서로를 가리키는 상황이므로
+     강한 참조 타입으로 인해 메모리 누수가 생길 수 있으므로 weak으로 선언한다.*/
+    weak var delegate: MemberDelegate?
     
     //셀을 클릭했을 때, 멤버 정보를 받아오기
     var member: Member?
@@ -74,16 +79,16 @@ final class DetailViewController: UIViewController {
             Member(name: name, age: age, phone: phoneNumber, address: address)
             newMember.memberImage = detailView.mainImageView.image
             
-            // 1) 델리게이트 방식이 아닌 구현⭐️
-            let index = navigationController!.viewControllers.count - 2
-            // 전 화면에 접근하기 위함
-            let vc = navigationController?.viewControllers[index] as! ViewController
-            // 전 화면의 모델에 접근해서 멤버를 추가
-            vc.memberListManager.makeNewMember(newMember)
+//            // 1) 델리게이트 방식이 아닌 구현⭐️
+//            let index = navigationController!.viewControllers.count - 2
+//            // 전 화면에 접근하기 위함
+//            let vc = navigationController?.viewControllers[index] as! ViewController
+//            // 전 화면의 모델에 접근해서 멤버를 추가
+//            vc.memberListManager.makeNewMember(newMember)
             
             
             // 2) 델리게이트 방식으로 구현⭐️
-            //delegate?.addNewMember(newMember)
+            delegate?.addNewMember(newMember)
             
             
         // [2] 멤버가 있다면 (멤버의 내용을 업데이트 하기 위한 설정)
@@ -100,12 +105,12 @@ final class DetailViewController: UIViewController {
             // 뷰에도 바뀐 멤버를 전달 (뷰컨트롤러 ==> 뷰)
             detailView.member = member
             
-            // 1) 델리게이트 방식이 아닌 구현⭐️
-            let index = navigationController!.viewControllers.count - 2
-            // 전 화면에 접근하기 위함
-            let vc = navigationController?.viewControllers[index] as! ViewController
-            // 전 화면의 모델에 접근해서 멤버를 업데이트
-            vc.memberListManager.updateMemberInfo(index: memberId, member!)
+//            // 1) 델리게이트 방식이 아닌 구현⭐️
+//            let index = navigationController!.viewControllers.count - 2
+//            // 전 화면에 접근하기 위함
+//            let vc = navigationController?.viewControllers[index] as! ViewController
+//            // 전 화면의 모델에 접근해서 멤버를 업데이트
+//            vc.memberListManager.updateMemberInfo(index: memberId, member!)
             /*위의 코드 설명.
              navigationController는 뷰 컨트롤러를 배열로 가지는 viewControllers를 관리 할 수 있음
              따라서 viewControllers의 count  - 1 을 해주면 바로 전화면으로 넘어감. 하지만 우리는
@@ -115,7 +120,7 @@ final class DetailViewController: UIViewController {
              실행시킨 뒤, 새로운 정보를 저장할 수 있는거임.
             */
             // 델리게이트 방식으로 구현⭐️
-            //delegate?.update(index: memberId, member!)
+            delegate?.update(index: memberId, member!)
         }
         
         // (일처리를 다한 후에) 전화면으로 돌아가기
