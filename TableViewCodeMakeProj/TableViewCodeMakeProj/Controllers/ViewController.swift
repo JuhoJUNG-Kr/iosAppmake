@@ -50,6 +50,7 @@ final class ViewController: UIViewController {
     }
     //테이블 뷰 셋업 함수
     func setupTableView() {
+        tableView.delegate = self
         tableView.dataSource = self
         //각 셀의 높이
         tableView.rowHeight = 60
@@ -90,5 +91,17 @@ extension ViewController: UITableViewDataSource {
         cell.selectionStyle = .none
         
         return cell
+    }
+}
+
+extension ViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //디테일 화면으로 넘어가는 코드
+        let detailVC = DetailViewController()
+        let array = memberListManager.getMembersList()
+        
+        detailVC.member = array[indexPath.row]
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 }
