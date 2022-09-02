@@ -13,6 +13,13 @@ final class ViewController: UIViewController {
     private let tableView = UITableView()
     
     var memberListManager = MemberListManager()
+    
+    //네이게이션 안에 넣기 위한 버튼
+    lazy var plusButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(plusButtonTapped))
+        return button
+    }()
+    
     // MARK: - ViewDidLoad
 
     override func viewDidLoad() {
@@ -23,6 +30,13 @@ final class ViewController: UIViewController {
         setupTableView()
         setupTableViewConstraints()
         setupNaviBar()
+    }
+    
+    //어떤 화면으로 넘어갔다가 다시 다른 화면이 재호출 될 때 사용하는 메서드
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //디테일 화면에서 다시 테이블 뷰로 넘어올 때, 테이블 뷰 새로고침 해주세요~
+        tableView.reloadData()
     }
     
     // MARK: - Navigation Bar Set Up
@@ -42,7 +56,7 @@ final class ViewController: UIViewController {
         //navigationController?.navigationBar.prefersLargeTitles = true -> 네비게이션 바 크기 크게 만들기
         
         //네비게이션 바 오른쪽 상단 버튼 설정
-        //self.navigationItem.rightBarButtonItem = self.plusButton
+        self.navigationItem.rightBarButtonItem = self.plusButton
     }
     //데이터 불러오기 함수
     func setupData() {
@@ -57,6 +71,11 @@ final class ViewController: UIViewController {
         //스토리 보드가 아닌 코드로 작성했기 때문에, 자동으로 셀이 등록되지 않음. 반드시 해줄 것!⭐️
         //무엇을 등록? 뷰 폴더 안에 내가 만들어 놓은 셀을 등록할 것.
         tableView.register(MyTableViewCell.self, forCellReuseIdentifier: "MemberCell")
+    }
+    
+    @objc func plusButtonTapped() {
+        let detailVC = DetailViewController()
+        navigationController?.pushViewController(detailVC, animated: true)
     }
     
     // MARK: - AutoLayout Table View
