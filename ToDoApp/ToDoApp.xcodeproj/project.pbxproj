@@ -14,6 +14,8 @@
 		5BFAE70828C8EBE10098C465 /* ToDoApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5BFAE70628C8EBE10098C465 /* ToDoApp.xcdatamodeld */; };
 		5BFAE70A28C8EBE10098C465 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BFAE70928C8EBE10098C465 /* Assets.xcassets */; };
 		5BFAE70D28C8EBE10098C465 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BFAE70B28C8EBE10098C465 /* LaunchScreen.storyboard */; };
+		5BFAE71628C8F66A0098C465 /* Entity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFAE71428C8F66A0098C465 /* Entity+CoreDataClass.swift */; };
+		5BFAE71728C8F66A0098C465 /* Entity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFAE71528C8F66A0098C465 /* Entity+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		5BFAE70928C8EBE10098C465 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5BFAE70C28C8EBE10098C465 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5BFAE70E28C8EBE10098C465 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5BFAE71428C8F66A0098C465 /* Entity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		5BFAE71528C8F66A0098C465 /* Entity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,8 @@
 		5BFAE6FC28C8EBE10098C465 /* ToDoApp */ = {
 			isa = PBXGroup;
 			children = (
+				5BFAE71428C8F66A0098C465 /* Entity+CoreDataClass.swift */,
+				5BFAE71528C8F66A0098C465 /* Entity+CoreDataProperties.swift */,
 				5BFAE6FD28C8EBE10098C465 /* AppDelegate.swift */,
 				5BFAE6FF28C8EBE10098C465 /* SceneDelegate.swift */,
 				5BFAE70128C8EBE10098C465 /* ViewController.swift */,
@@ -141,9 +147,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BFAE71728C8F66A0098C465 /* Entity+CoreDataProperties.swift in Sources */,
 				5BFAE70228C8EBE10098C465 /* ViewController.swift in Sources */,
 				5BFAE6FE28C8EBE10098C465 /* AppDelegate.swift in Sources */,
 				5BFAE70028C8EBE10098C465 /* SceneDelegate.swift in Sources */,
+				5BFAE71628C8F66A0098C465 /* Entity+CoreDataClass.swift in Sources */,
 				5BFAE70828C8EBE10098C465 /* ToDoApp.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
