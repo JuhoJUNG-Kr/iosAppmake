@@ -120,17 +120,40 @@ extension ViewController: UITableViewDelegate {
 
 //MARK: - 🍏 (단순) 서치바 확장
 
-//extension ViewController: UISearchBarDelegate {
-//
-//    // 유저가 글자를 입력하는 순간마다 호출되는 메서드
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//
-//        print(searchText)
+extension ViewController: UISearchBarDelegate {
+
+    // 유저가 글자를 입력하는 순간마다 호출되는 메서드
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+
+        print(searchText)
+        // 다시 빈 배열로 만들기 ⭐️
+        self.musicArrays = []
+
+        // 네트워킹 시작
+        networkManager.fetchMusic(searchTerm: searchText) { result in
+            switch result {
+            case .success(let musicDatas):
+                self.musicArrays = musicDatas
+                DispatchQueue.main.async {
+                    self.musicTableView.reloadData()
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+
+    // 검색(Search) 버튼을 눌렀을때 호출되는 메서드
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//        guard let text = searchController.searchBar.text else {
+//            return
+//        }
+//        print(text)
 //        // 다시 빈 배열로 만들기 ⭐️
 //        self.musicArrays = []
 //
 //        // 네트워킹 시작
-//        networkManager.fetchMusic(searchTerm: searchText) { result in
+//        networkManager.fetchMusic(searchTerm: text) { result in
 //            switch result {
 //            case .success(let musicDatas):
 //                self.musicArrays = musicDatas
@@ -141,32 +164,9 @@ extension ViewController: UITableViewDelegate {
 //                print(error.localizedDescription)
 //            }
 //        }
+//        self.view.endEditing(true)
 //    }
-//
-//    // 검색(Search) 버튼을 눌렀을때 호출되는 메서드
-////    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-////        guard let text = searchController.searchBar.text else {
-////            return
-////        }
-////        print(text)
-////        // 다시 빈 배열로 만들기 ⭐️
-////        self.musicArrays = []
-////
-////        // 네트워킹 시작
-////        networkManager.fetchMusic(searchTerm: text) { result in
-////            switch result {
-////            case .success(let musicDatas):
-////                self.musicArrays = musicDatas
-////                DispatchQueue.main.async {
-////                    self.musicTableView.reloadData()
-////                }
-////            case .failure(let error):
-////                print(error.localizedDescription)
-////            }
-////        }
-////        self.view.endEditing(true)
-////    }
-//}
+}
 
 
 //MARK: -  🍎 검색하는 동안 (새로운 화면을 보여주는) 복잡한 내용 구현 가능
