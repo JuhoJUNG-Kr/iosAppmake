@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var slider: UISlider!
     
     weak var timer: Timer?
-    
+    //레이블에 표시할 초의 숫자를 문자열 보간법을 사용하기위해 선언
     var number = 0
     
     override func viewDidLoad() {

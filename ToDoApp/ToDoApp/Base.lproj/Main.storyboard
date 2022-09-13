@@ -11,7 +11,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ToDoApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ToDoApp" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -116,17 +116,17 @@
                     <navigationItem key="navigationItem" id="COs-ru-5am"/>
                     <connections>
                         <outlet property="tableView" destination="hno-yt-f0J" id="LW4-zs-Niu"/>
-                        <segue destination="RWs-Pd-vVW" kind="show" id="fhE-GD-PM0"/>
+                        <segue destination="RWs-Pd-vVW" kind="show" identifier="ToDoCell" id="fhE-GD-PM0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="730" y="100"/>
         </scene>
-        <!--View Controller-->
+        <!--Todocell-->
         <scene sceneID="hkk-Oj-DAU">
             <objects>
-                <viewController id="RWs-Pd-vVW" sceneMemberID="viewController">
+                <viewController id="RWs-Pd-vVW" customClass="todocell" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="brW-9M-lro">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
