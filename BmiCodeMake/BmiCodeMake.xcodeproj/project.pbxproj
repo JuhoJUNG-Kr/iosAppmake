@@ -16,6 +16,8 @@
 		5B25AC2628D0E5F8002E0500 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B25AC2528D0E5F8002E0500 /* ResultViewController.swift */; };
 		5BA31D6628D20588004568D0 /* BMI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA31D6528D20588004568D0 /* BMI.swift */; };
 		5BA31D6A28D208B7004568D0 /* BMICalculatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA31D6928D208B7004568D0 /* BMICalculatorManager.swift */; };
+		5BA31D6C28D2115D004568D0 /* mainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA31D6B28D2115D004568D0 /* mainView.swift */; };
+		5BA31D7028D21CDC004568D0 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA31D6F28D21CDC004568D0 /* ResultView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		5B25AC2528D0E5F8002E0500 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		5BA31D6528D20588004568D0 /* BMI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMI.swift; sourceTree = "<group>"; };
 		5BA31D6928D208B7004568D0 /* BMICalculatorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMICalculatorManager.swift; sourceTree = "<group>"; };
+		5BA31D6B28D2115D004568D0 /* mainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainView.swift; sourceTree = "<group>"; };
+		5BA31D6F28D21CDC004568D0 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +91,8 @@
 			isa = PBXGroup;
 			children = (
 				5B25AC1728D0C50F002E0500 /* Main.storyboard */,
+				5BA31D6B28D2115D004568D0 /* mainView.swift */,
+				5BA31D6F28D21CDC004568D0 /* ResultView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -173,8 +179,10 @@
 			files = (
 				5BA31D6628D20588004568D0 /* BMI.swift in Sources */,
 				5B25AC1628D0C50F002E0500 /* ViewController.swift in Sources */,
+				5BA31D6C28D2115D004568D0 /* mainView.swift in Sources */,
 				5BA31D6A28D208B7004568D0 /* BMICalculatorManager.swift in Sources */,
 				5B25AC1228D0C50F002E0500 /* AppDelegate.swift in Sources */,
+				5BA31D7028D21CDC004568D0 /* ResultView.swift in Sources */,
 				5B25AC1428D0C50F002E0500 /* SceneDelegate.swift in Sources */,
 				5B25AC2628D0E5F8002E0500 /* ResultViewController.swift in Sources */,
 			);
