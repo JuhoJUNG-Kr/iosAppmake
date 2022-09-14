@@ -9,6 +9,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    var bmiManager = BMICalculatorManager()
+    
     // MARK: - UI
 
     lazy var mainLabel: UILabel = {
@@ -119,6 +121,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         makeUI()
+        tallTextField.delegate = self
+        weightTextField.delegate = self
     }
     
     // MARK: - Auto layout
@@ -144,9 +148,20 @@ class ViewController: UIViewController {
     }
     
     @objc func calculateButtonTapped() {
-        let resultVC = ResultViewController()
-        resultVC.modalPresentationStyle = .fullScreen
-        present(resultVC, animated: true, completion: nil)
+        if tallTextField.text == "" || weightTextField.text == "" {
+            mainLabel.text = "키와 몸무게를 입력하셔야만 합니다!!!"
+            mainLabel.textColor = UIColor.red
+        } else {
+            mainLabel.text = "키와 몸무게를 입력해 주세요"
+            mainLabel.textColor = UIColor.black
+            let resultVC = ResultViewController()
+            resultVC.modalPresentationStyle = .fullScreen
+            let bmi = bmiManager.getBMI(height: tallTextField.text!, weight: weightTextField.text!)
+            resultVC.bmi = bmi
+            tallTextField.text = ""
+            weightTextField.text = ""
+            present(resultVC, animated: true, completion: nil)
+        }
     }
 }
 
@@ -154,5 +169,24 @@ class ViewController: UIViewController {
 
 extension ViewController: UITextFieldDelegate {
     
+
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // 두개의 텍스트필드를 모두 종료 (키보드 내려가기)
+        if tallTextField.text != "", weightTextField.text != "" {
+            weightTextField.resignFirstResponder()
+            return true
+        // 두번째 텍스트필드로 넘어가도록
+        } else if tallTextField.text != "" {
+            weightTextField.becomeFirstResponder()
+            return true
+        }
+        return false
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        tallTextField.resignFirstResponder()
+        weightTextField.resignFirstResponder()
+    }
 }
 
