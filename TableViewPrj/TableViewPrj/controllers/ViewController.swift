@@ -114,4 +114,7 @@ extension ViewController: UITableViewDelegate {
             detailVC.movieData = array[indexPath.row]
         }
     }
+
+    
 }
+
