@@ -16,6 +16,8 @@
 		5B3CFFBE28EC966300CF4FB8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B3CFFBC28EC966300CF4FB8 /* LaunchScreen.storyboard */; };
 		5B3CFFC928EC974000CF4FB8 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3CFFC828EC974000CF4FB8 /* HistoryViewController.swift */; };
 		5B3CFFCB28EC976E00CF4FB8 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3CFFCA28EC976E00CF4FB8 /* SettingViewController.swift */; };
+		5B3CFFCD28EC986B00CF4FB8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3CFFCC28EC986B00CF4FB8 /* LoginViewController.swift */; };
+		5B3CFFCF28EC988300CF4FB8 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3CFFCE28EC988300CF4FB8 /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		5B3CFFBF28EC966300CF4FB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B3CFFC828EC974000CF4FB8 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		5B3CFFCA28EC976E00CF4FB8 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		5B3CFFCC28EC986B00CF4FB8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		5B3CFFCE28EC988300CF4FB8 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +82,7 @@
 		5B3CFFC528EC96F100CF4FB8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5B3CFFCC28EC986B00CF4FB8 /* LoginViewController.swift */,
 				5B3CFFB228EC966200CF4FB8 /* MainViewController.swift */,
 				5B3CFFC828EC974000CF4FB8 /* HistoryViewController.swift */,
 				5B3CFFCA28EC976E00CF4FB8 /* SettingViewController.swift */,
@@ -89,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				5B3CFFB428EC966200CF4FB8 /* Main.storyboard */,
+				5B3CFFCE28EC988300CF4FB8 /* LoginView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -171,11 +177,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B3CFFCD28EC986B00CF4FB8 /* LoginViewController.swift in Sources */,
 				5B3CFFB328EC966200CF4FB8 /* MainViewController.swift in Sources */,
 				5B3CFFAF28EC966200CF4FB8 /* AppDelegate.swift in Sources */,
 				5B3CFFB128EC966200CF4FB8 /* SceneDelegate.swift in Sources */,
 				5B3CFFC928EC974000CF4FB8 /* HistoryViewController.swift in Sources */,
 				5B3CFFB928EC966200CF4FB8 /* LottoPrj.xcdatamodeld in Sources */,
+				5B3CFFCF28EC988300CF4FB8 /* LoginView.swift in Sources */,
 				5B3CFFCB28EC976E00CF4FB8 /* SettingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
